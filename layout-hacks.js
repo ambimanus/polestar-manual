@@ -90,15 +90,15 @@ window.hack_scrape_hierarchy = function() {
     for (const elem of tocelems) {
         console.log(elem.tagName, elem.textContent);
         if (elem.tagName.toLowerCase() == 'h1') {
-            section = {text: elem.textContent, subsections: []};
+            section = {section: elem.textContent, subsections: []};
             tocitems.push(section);
         }
         if (elem.tagName.toLowerCase() == 'label') {
-            subsection = {text: elem.textContent, items: []};
+            subsection = {subsection: elem.textContent, topics: []};
             section.subsections.push(subsection);
         }
         if (elem.tagName.toLowerCase() == 'div') {
-            subsection.items.push(elem.textContent);
+            subsection.topics.push(elem.textContent);
         }
     }
     return tocitems;

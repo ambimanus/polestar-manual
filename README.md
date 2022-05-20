@@ -54,3 +54,25 @@ Using bash on Ubuntu:
    ```
    (.venv) $ python main.py --chromium-binary 982481/chrome-linux/chrome
    ```
+
+## Diff report generator
+
+Compares two topic maps (either via json file or via url) and generates a
+HTML-formatted report.
+
+```
+usage: jsondiff.py [-h] [--fromurl FROMURL] [--tourl TOURL] [--fromfile FROMFILE]
+                   [--tofile TOFILE] [--output OUTPUT] [--chromium-binary CHROMIUM_BINARY]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --fromurl FROMURL     URL to compare
+  --tourl TOURL         URL to compare
+  --fromfile FROMFILE   JSON file to compare
+  --tofile TOFILE       JSON file to compare
+  --output OUTPUT       Output filename [default: ./diff.html]
+  --chromium-binary CHROMIUM_BINARY
+                        Custom chromium binary [default: query the operating system]
+
+You must provide either fromurl/tourl or fromfile/tofile, not both.
+```

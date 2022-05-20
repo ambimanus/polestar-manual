@@ -2,14 +2,14 @@ import os
 import argparse
 import tempfile
 
-import pshtml2py
+import pshtml2pdf
 import pdflinker
 
 def make_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--url', default='https://www.polestar.com/de/manual/polestar-2/2022', help="Base URL [default: %(default)s]")
-    parser.add_argument('--chrome-binary', help="Custom chrome binary [default: query the operating system]")
+    parser.add_argument('--chromium-binary', help="Custom chromium binary [default: query the operating system]")
     parser.add_argument('--keep-tmp-files', help='Don\'t delete temporary files', action='store_true')
     parser.add_argument('--output', help="Output filename [default: './<car model> - <model year>.pdf']")
 
@@ -34,5 +34,5 @@ if __name__ == '__main__':
     else:
         outdir, outfilename = '.', None
 
-    pshtml2py.fetch_manual(args.url, workdir, args.chrome_binary)
+    pshtml2pdf.fetch_manual(args.url, workdir, args.chromium_binary)
     pdflinker.build_manual(workdir, outdir, outfilename)

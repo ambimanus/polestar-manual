@@ -126,19 +126,19 @@ def build_manual(workdir, outdir, outfilename):
         section_bm = None
         for subsection in section['subsections']:
             subsection_bm = None
-            for item in subsection['items']:
-                item_url = urlmap[item]
-                if item_url in chapter_indexes:
-                    dstpg = chapter_indexes[item_url]
+            for topic in subsection['topics']:
+                topic_url = urlmap[topic]
+                if topic_url in chapter_indexes:
+                    dstpg = chapter_indexes[topic_url]
                     if section_bm is None:
-                        # print(f'Bookmark: section "{section["text"]}" --> page {dstpg}')
-                        section_bm = writer.addBookmark(section['text'], dstpg)
+                        # print(f'Bookmark: section "{section["section"]}" --> page {dstpg}')
+                        section_bm = writer.addBookmark(section['section'], dstpg)
                     if subsection_bm is None:
-                        # print(f'Bookmark: subsection "{section["text"]}" --> page {dstpg}')
-                        subsection_bm = writer.addBookmark(subsection['text'],
+                        # print(f'Bookmark: subsection "{section["subsection"]}" --> page {dstpg}')
+                        subsection_bm = writer.addBookmark(subsection['subsection'],
                                 dstpg, parent=section_bm)
-                    # print(f'Bookmark: item "{item}" --> page {dstpg}')
-                    writer.addBookmark(item, dstpg, parent=subsection_bm)
+                    # print(f'Bookmark: topic "{topic}" --> page {dstpg}')
+                    writer.addBookmark(topic, dstpg, parent=subsection_bm)
     # Activate bookmark panel on startup
     writer.setPageMode('/UseOutlines')
 
