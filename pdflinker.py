@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import argparse
 
 import PyPDF2
 
@@ -130,10 +131,13 @@ def build_manual(workdir, outdir, outfilename):
                 if item_url in chapter_indexes:
                     dstpg = chapter_indexes[item_url]
                     if section_bm is None:
+                        # print(f'Bookmark: section "{section["text"]}" --> page {dstpg}')
                         section_bm = writer.addBookmark(section['text'], dstpg)
                     if subsection_bm is None:
+                        # print(f'Bookmark: subsection "{section["text"]}" --> page {dstpg}')
                         subsection_bm = writer.addBookmark(subsection['text'],
                                 dstpg, parent=section_bm)
+                    # print(f'Bookmark: item "{item}" --> page {dstpg}')
                     writer.addBookmark(item, dstpg, parent=subsection_bm)
     # Activate bookmark panel on startup
     writer.setPageMode('/UseOutlines')
@@ -157,3 +161,25 @@ def build_manual(workdir, outdir, outfilename):
     os.makedirs(outdir, exist_ok=True)
     with open(outfile, 'wb') as f:
         writer.write(f)
+
+
+def make_parser():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--workdir', required=True)
+    parser.add_argument('--output', help="Output filename [default: './<car model> - <model year>.pdf']")
+
+    return parser
+
+
+if __name__ == '__main__':
+    parser = make_parser()
+    args = parser.parse_args()
+
+    # Set output filename
+    if args.output is not None:
+        outdir, outfilename = os.path.split(args.output)
+    else:
+        outdir, outfilename = '.', None
+
+    build_manual(args.workdir, outdir, outfilename)
