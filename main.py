@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     # Set output filename
     if args.output is not None:
-        outdir, outfilename = os.path.split(parser.output)
+        outdir, outfilename = os.path.split(args.output)
     else:
         outdir, outfilename = '.', None
 
