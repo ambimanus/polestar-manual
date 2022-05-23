@@ -206,10 +206,13 @@ def fix_url(url, relative=True):
         '%26',  # &
         '%2c',  # ,
         '%2f',  # /
+        '%c2',  # Â
+        '%a0',  # '	 '
     ]
     # "Escape" our safechars
     for sc in safechars:
-        url = url.replace(sc, sc.replace('%', 'SAFECHAR'))
+        url = url.replace(sc.upper(), sc.upper().replace('%', 'SAFECHAR'))
+        url = url.replace(sc.lower(), sc.lower().replace('%', 'SAFECHAR'))
     # Unquote
     url = unquote(url)
     # "Unescape" our safechars
