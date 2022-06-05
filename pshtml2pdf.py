@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.utils import ChromeType
+from webdriver_manager.core.utils import ChromeType
 
 
 def send_devtools(driver, cmd, params={}):
@@ -34,8 +34,7 @@ def setup_driver(path, chrome_binary=None):
         chrome_binary_path = os.path.dirname(chrome_binary)
         os.environ['PATH'] = ':'.join((chrome_binary_path, os.environ['PATH']))
         driver_options.binary_location = chrome_binary
-    driver_manager = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM,
-                                         print_first_line=False)
+    driver_manager = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM)
     driver_service = Service(driver_manager.install())
     driver = webdriver.Chrome(service=driver_service, options=driver_options)
     # Set script timeout to 5mins
