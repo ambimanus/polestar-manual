@@ -8,8 +8,8 @@ import pdflinker
 def make_parser():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('--chromium-binary', required=True, help="Path to chromium binary 982481 (101.0.4951.0)")
     parser.add_argument('--url', default='https://www.polestar.com/de/manual/polestar-2/2022', help="Base URL [default: %(default)s]")
-    parser.add_argument('--chromium-binary', help="Custom chromium binary [default: query the operating system]")
     parser.add_argument('--keep-tmp-files', help='Don\'t delete temporary files', action='store_true')
     parser.add_argument('--output', help="Output filename [default: './<car model> - <model year>.pdf']")
 

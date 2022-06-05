@@ -34,7 +34,8 @@ def setup_driver(path, chrome_binary=None):
         chrome_binary_path = os.path.dirname(chrome_binary)
         os.environ['PATH'] = ':'.join((chrome_binary_path, os.environ['PATH']))
         driver_options.binary_location = chrome_binary
-    driver_manager = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM)
+    driver_manager = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM,
+                                         version="101.0.4951.41")
     driver_service = Service(driver_manager.install())
     driver = webdriver.Chrome(service=driver_service, options=driver_options)
     # Set script timeout to 5mins

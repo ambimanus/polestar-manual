@@ -5,13 +5,13 @@ Convert the online Polestar 2 manual into a PDF.
 Needs a recent stable version of the **chromium** browser (not chrome).
 
 ```
-usage: main.py [-h] [--url URL] [--chromium-binary CHROMIUM_BINARY] [--keep-tmp-files] [--output OUTPUT]
+usage: main.py [-h] --chromium-binary CHROMIUM_BINARY [--url URL] [--keep-tmp-files] [--output OUTPUT]
 
 optional arguments:
   -h, --help            show this help message and exit
-  --url URL             Base URL [default: https://www.polestar.com/de/manual/polestar-2/2022]
   --chromium-binary CHROMIUM_BINARY
-                        Custom chromium binary [default: query the operating system]
+                        Path to chromium binary 982481 (101.0.4951.0)
+  --url URL             Base URL [default: https://www.polestar.com/de/manual/polestar-2/2022]
   --keep-tmp-files      Don't delete temporary files
   --output OUTPUT       Output filename [default: './<car model> - <model year>.pdf']
 ```
@@ -40,16 +40,15 @@ Using bash on Ubuntu:
    (.venv) $ pip install -r requirements.txt
    ```
 
-4. Make sure that a recent stable version of chromium is available, either
-   installed in the system or as standalone download. In my setup, I fetched a
-   standalone version like this:
+4. Make sure that a recent stable version of chromium 101.0.4951.0 is
+   available. In my setup, I fetched a standalone version like this:
 
    ```
    (.venv) $ curl -o 982481-chrome-linux.zip https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F982481%2Fchrome-linux.zip?alt=media
    (.venv) $ unzip 982481-chrome-linux.zip -d 982481/
    ```
 
-5. Run the script, optionally pointing to the standalone chromium binary:
+5. Run the script while pointing to the chromium binary:
 
    ```
    (.venv) $ python main.py --chromium-binary 982481/chrome-linux/chrome
