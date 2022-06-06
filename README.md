@@ -18,7 +18,7 @@ optional arguments:
 
 ## Step by step instructions
 
-Using bash on Ubuntu:
+Using bash on Ubuntu. Don't do this as `root`, otherwise chromium won't start later on. Instead, create a normal user and use `sudo` in step 5.
 
 1. Get the code, i.e. clone the repository into a local folder:
 
@@ -48,10 +48,10 @@ Using bash on Ubuntu:
    (.venv) $ unzip 982481-chrome-linux.zip -d 982481/
    ```
 
-5. If you are running a LXC container, you'll need to install `libnss`:
+5. If you are running a fresh LXC container, you'll most likely need to install some chromium dependencies:
    
    ```
-   (.venv) $ sudo apt install libnss3
+   (.venv) $ sudo apt install libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcairo2 libcups2 libdbus-1-3 libdrm2 libexpat1 libgbm1 libgcc1 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0
    ```
 
 6. Run the script while pointing to the chromium binary:
