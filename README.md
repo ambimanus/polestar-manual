@@ -48,7 +48,13 @@ Using bash on Ubuntu:
    (.venv) $ unzip 982481-chrome-linux.zip -d 982481/
    ```
 
-5. Run the script while pointing to the chromium binary:
+5. If you are running a LXC container, you'll need to install `libnss`:
+   
+   ```
+   (.venv) $ sudo apt install libnss3
+   ```
+
+6. Run the script while pointing to the chromium binary:
 
    ```
    (.venv) $ python main.py --chromium-binary 982481/chrome-linux/chrome
